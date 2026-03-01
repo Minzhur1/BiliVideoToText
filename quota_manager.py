@@ -134,7 +134,7 @@ class QuotaManager:
                 "sponsor_expire": None,
                 "invited_by": None,
                 "invites": [],
-                "invite_code": self._generate_invite_code(user_id),
+                "invite_code": self._generate_invite_code(user_id),  # 加上这个！
                 "history": []
             }
 
@@ -365,4 +365,5 @@ def get_quota_manager():
     global _quota_manager
     if _quota_manager is None:
         _quota_manager = QuotaManager()
+
     return _quota_manager
