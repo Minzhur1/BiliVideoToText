@@ -1,4 +1,6 @@
 streamlit>=1.28.0
 yt-dlp>=2023.11.16
-requests>=2.31.0
-psutil>=5.8.0  # 用于服务器监控
+faster-whisper>=0.9.0
+zhconv>=1.4.0
+psutil>=5.8.0
+openai-whisper==20231117  # 备用
