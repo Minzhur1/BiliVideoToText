@@ -94,6 +94,10 @@ with st.sidebar:
     # 累计转换
     st.caption(f"📊 累计转换: {user_status['total_converted']} 个视频")
 
+    st.markdown("---")
+    st.markdown(f"**🔑 你的用户ID**: `{quota_manager.get_user_id()}`")
+    st.caption("赞助时复制这个ID发给我")
+
     st.divider()
 
     # 邀请码功能
@@ -510,4 +514,5 @@ st.markdown("""
 st.markdown("""
 ---
 © BiliVideoToText v1.0 保留所有权利 (2026)
+
 """)
