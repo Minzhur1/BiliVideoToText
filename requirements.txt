@@ -1,6 +1,5 @@
 streamlit>=1.28.0
 yt-dlp>=2023.11.16
-faster-whisper>=0.9.0
+openai-whisper>=20231117
 zhconv>=1.4.0
 psutil>=5.8.0
-openai-whisper==20231117  # 备用
