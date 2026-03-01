@@ -276,24 +276,46 @@ class QuotaManager:
     def get_user_status(self) -> dict:
         """获取用户状态（用于显示）"""
         user_id = self.get_user_id()
-        user_data = self.data["users"].get(user_id, {})
+        
+        # 确保用户存在
+        if user_id not in self.data["users"]:
+            today = date.today().isoformat()
+            self.data["users"][user_id] = {
+                "free_used_today": 0,
+                "last_use_date": today,
+                "total_converted": 0,
+                "sponsor_balance": 0,
+                "sponsor_expire": None,
+                "invited_by": None,
+                "invites": [],
+                "invite_code": self._generate_invite_code(user_id),
+                "history": []
+            }
+            self.save_data()
+        
+        user_data = self.data["users"][user_id]
         today = date.today().isoformat()
-
-        # 如果是新的一天，重置计数（显示时计算）
+        
+        # 确保有邀请码（如果没有就生成一个）
+        if not user_data.get("invite_code"):
+            user_data["invite_code"] = self._generate_invite_code(user_id)
+            self.save_data()
+        
+        # 如果是新的一天，重置计数
         if user_data.get("last_use_date") != today:
             free_remaining = self.max_free_per_day
         else:
             free_remaining = max(0, self.max_free_per_day - user_data.get("free_used_today", 0))
-
+        
         sponsor_balance = user_data.get("sponsor_balance", 0)
         invite_rewards = user_data.get("invite_rewards", 0)
-
+        
         return {
             "free_remaining": free_remaining,
             "sponsor_balance": sponsor_balance,
             "invite_rewards": invite_rewards,
             "total_converted": user_data.get("total_converted", 0),
-            "invite_code": user_data.get("invite_code", ""),
+            "invite_code": user_data.get("invite_code", "ERROR"),  # 如果不是空字符串
             "can_use_sponsor": sponsor_balance > 0 or invite_rewards > 0
         }
 
@@ -367,3 +389,4 @@ def get_quota_manager():
         _quota_manager = QuotaManager()
 
     return _quota_manager
+
