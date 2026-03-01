@@ -77,7 +77,7 @@ def show_sponsor_page():
 
     本工具通过 **爱发电** 平台收款：
 
-    👉 **[点击这里前往爱发电赞助](https://afdian.com/a/你的爱发电主页ID)**
+    👉 **[点击这里前往爱发电赞助](https://afdian.com/a/bilivideototext)**
 
     **流程：**
     1. 点击上方链接选择套餐赞助
@@ -119,4 +119,5 @@ def show_sponsor_page():
         if st.button("返回重新选择"):
             st.session_state["show_payment"] = False
             st.rerun()
+
 
