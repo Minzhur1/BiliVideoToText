@@ -29,16 +29,18 @@ def download_bilibili_video(url, output_file):
             'outtmpl': output_base,
             'quiet': False,
             'no_warnings': False,
+            'format': 'best[height<=720]',  # 直接用已合并的格式
+            # 删掉 format_sort 和 merge_output_format
 
             # 核心修改：使用简单的格式选择字符串
             # 优先选择720p以下的已合并音视频格式
             'format': 'bv*[height<=720]+ba/b[height<=720]',
 
             # 备用：如果上面找不到，选择最佳质量但限制720p
-            'format_sort': ['res:720', 'ext:mp4:m4a'],
+            #'format_sort': ['res:720', 'ext:mp4:m4a'],
 
             # 简化合并设置
-            'merge_output_format': 'mp4',
+            #'merge_output_format': 'mp4',
 
             # 其他设置
             'ignoreerrors': False,
@@ -241,4 +243,5 @@ def extract_audio_from_video(video_file, audio_file):
 if __name__ == "__main__":
     print("测试bilibili_tools模块...")
     # 这里可以添加简单的自测试代码
+
     print("模块加载成功，请通过main.py或app.py使用")
