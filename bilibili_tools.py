@@ -29,7 +29,8 @@ def download_bilibili_video(url, output_file):
             'outtmpl': output_base,
             'quiet': False,
             'no_warnings': False,
-            'format': 'best[height<=720]',  # 直接用已合并的格式
+            # 直接下载已合并的格式
+            'format': 'best[height<=720]'  # 不需要 ffmpeg 合并
             # 删掉 format_sort 和 merge_output_format
 
             # 核心修改：使用简单的格式选择字符串
@@ -245,3 +246,4 @@ if __name__ == "__main__":
     # 这里可以添加简单的自测试代码
 
     print("模块加载成功，请通过main.py或app.py使用")
+
