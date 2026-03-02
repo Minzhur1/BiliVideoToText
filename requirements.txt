@@ -1,5 +1,7 @@
+
+
 streamlit>=1.28.0
-yt-dlp>=2023.11.16
+yt-dlp  # 自动安装最新版
 openai-whisper>=20231117
 zhconv>=1.4.0
 psutil>=5.8.0
