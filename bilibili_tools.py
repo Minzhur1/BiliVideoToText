@@ -33,9 +33,6 @@ def download_bilibili_video(url, output_file):
             'format': 'best[height<=720]'  # 不需要 ffmpeg 合并
             # 删掉 format_sort 和 merge_output_format
 
-            # 核心修改：使用简单的格式选择字符串
-            # 优先选择720p以下的已合并音视频格式
-            'format': 'bv*[height<=720]+ba/b[height<=720]',
 
             # 备用：如果上面找不到，选择最佳质量但限制720p
             #'format_sort': ['res:720', 'ext:mp4:m4a'],
@@ -246,4 +243,5 @@ if __name__ == "__main__":
     # 这里可以添加简单的自测试代码
 
     print("模块加载成功，请通过main.py或app.py使用")
+
 
