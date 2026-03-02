@@ -17,7 +17,8 @@ def download_bilibili_video(url, output_file):
             'outtmpl': output_base,
             'quiet': False,
             'no_warnings': False,
-            'format': 'best[height<=720]',
+            # 改成这个：只要有视频+音频就行，不限分辨率
+            'format': 'bestvideo+bestaudio/best',
             'ignoreerrors': False,
             'no_color': True,
         }
@@ -137,3 +138,4 @@ def extract_audio_from_video(video_file, audio_file):
     except Exception as e:
         print(f" 音频提取失败: {e}")
         return False
+
