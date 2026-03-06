@@ -17,10 +17,15 @@ def download_bilibili_video(url, output_file):
             'outtmpl': output_base,
             'quiet': False,
             'no_warnings': False,
-            # 直接下载已合并的格式
-            'format': 'best',  # 最简单，不需要合并
+            'format': 'best',
             'ignoreerrors': False,
             'no_color': True,
+            # 添加伪装请求头
+            'headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Referer': 'https://www.bilibili.com',
+                'Origin': 'https://www.bilibili.com',
+            }
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -138,5 +143,6 @@ def extract_audio_from_video(video_file, audio_file):
     except Exception as e:
         print(f" 音频提取失败: {e}")
         return False
+
 
 
