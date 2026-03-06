@@ -4,6 +4,8 @@ import subprocess
 import sys
 
 def download_bilibili_video(url, output_file):
+    import time
+    time.sleep(2)  # 每下载一个视频等2秒
     try:
         print(" 开始下载视频...")
         print(f"链接: {url}")
@@ -143,6 +145,7 @@ def extract_audio_from_video(video_file, audio_file):
     except Exception as e:
         print(f" 音频提取失败: {e}")
         return False
+
 
 
 
